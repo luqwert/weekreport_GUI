@@ -1,0 +1,5 @@
+('c:\\users\\lus\\appdata\\local\\programs\\python\\python36-32\\lib\\site-packages\\simplejson-3.16.0-py3.6.egg',
+ None,
+ {'EGG-INFO', '*.pyc', '*.pyd', '*.pyw', '*.py', '*.cp36-win32.pyd'},
+ 'DATA',
+ [])
