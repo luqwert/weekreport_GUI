@@ -2,6 +2,8 @@
 # _*_ coding:utf-8 _*_  
 # @Author  : lusheng
 import datetime
+import os
+
 import requests
 from selenium import webdriver
 import time
@@ -11,6 +13,7 @@ import pytesseract
 import io
 import re
 import globalmap as gl
+# import pdforimage2text
 
 def asiametal(username, password):
     #主页
@@ -84,29 +87,46 @@ def asiametal(username, password):
     browser.find_element_by_xpath('//*[@id="loginbox"]/ul/li[1]/a').click()  #退出登录状态，避免影响下次登录
     browser.quit()
 
-    #pdf ocr方式提取文本
-    req_image = []
-    final_text = ''
-    with Image(filename=('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf'), resolution=800) as img:
-        with img.convert('jpeg') as converted:
-            # converted.save(filename='image.jpeg')
-            for img in converted.sequence:
-                img_page = Image(image=img)
-                req_image.append(img_page.make_blob('jpeg'))
+    # #pdf ocr方式提取文本
+    # req_image = []
+    # final_text = ''
+    # with Image(filename=('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf'), resolution=400) as img:
+    #     with img.convert('jpeg') as converted:
+    #         converted.save(filename='image.jpeg')
+    #         for img in converted.sequence:
+    #             img_page = Image(image=img)
+    #             req_image.append(img_page.make_blob('jpeg'))
+
+    # for i in range(3):
+    #     text = pdforimage2text.img2text('image-%d.jpeg' % i)
+    #     final_text = final_text + text
+    #     os.remove('image-%d.jpeg' % i)
+    # final_text = final_text.replace(' ', '').replace('\n', '')
+    # print(final_text)
+
 
     # 为每个图像运行OCR，识别图像中的文本
-    for img in req_image:
-        text = pytesseract.image_to_string(mage.open(io.BytesIO(img)), lang='chi_sim')
-        final_text = final_text + text
-    # text = pytesseract.image_to_string(mage.open('image-0.jpeg'),lang='chi_sim')
-    final_text = final_text.replace(' ', '').replace('\n', '')
+    # for img in req_image:
+    #     text = pytesseract.image_to_string(mage.open(io.BytesIO(img)), lang='chi_sim')
+    #     final_text = final_text + text
+    # # text = pytesseract.image_to_string(mage.open('image-0.jpeg'),lang='chi_sim')
+    # final_text = final_text.replace(' ', '').replace('\n', '')
     # print(final_text)
-    mengpian_text1 = '本周中国电解锰99.7%min主流价格' + re.search(r'(?<=本周中国电解锰99.7%min主流价格)(.+?)(?=中国电解锰分区域市场价格)', final_text).group()[:-5]
-    mengpian_text2 = re.search(r'(?<=下周走势预测)(.+?)(?=亚洲)', final_text).group()
-    print(mengpian_text1)
-    print(mengpian_text2)
-    gl.set_value('mengpian_text1', mengpian_text1)
-    gl.set_value('mengpian_text2', mengpian_text2)
+
+
+
+
+    # #在线方式提取位版本
+    # final_text = pdforimage2text.pdf2text('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf')
+    # final_text = final_text.replace(' ', '').replace('\n', '')
+    # print(final_text)
+
+    # mengpian_text1 = '本周中国电解锰99.7%min主流' + re.search(r'(?<=本周中国电解锰99.7%)(.+?)(?=中国电解锰分区域市场价格|\n)', final_text).group()[:-5]
+    # mengpian_text2 = re.search(r'(?<=下周走势预测)(.+?)(?=亚洲\n)|(?<=下周走势预测).*', final_text).group()
+    # print(mengpian_text1)
+    # print(mengpian_text2)
+    # gl.set_value('mengpian_text1', mengpian_text1)
+    # gl.set_value('mengpian_text2', mengpian_text2)
 
 # asiametal('sinometal', '50808266')
 

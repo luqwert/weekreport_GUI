@@ -9,6 +9,7 @@ import platts
 import mysteel
 import cnfeol
 import asiametal
+import huachengjinshu
 import globalmap as gl
 import os
 import weekreportsend
@@ -22,17 +23,18 @@ def make_report(cookies):
     platts.platts(1, 2)
     mysteel.mysteel('hnxgscb', 'xg8659291')
     mysteel.steelhome('xmx', 'xiemx')
-    asiametal.asiametal('sinometal', '50808266')
+    # asiametal.asiametal('sinometal', '50808266')
+    huachengjinshu.huachengjinshu()
     if os.path.exists('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx'):
         os.remove('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx')
 
     # rt = RichText('an exemple of ')
     # rt.add('a rich text', style='')
     # rt.add('some violet', color='#ff00ff')
-    image1 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\普氏指数.png',width=shared.Cm(16))
+    image1 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\普氏指数.jpeg',width=shared.Cm(16))
     image2 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\废钢指数近一年变化.png',width=shared.Cm(16))
     image3 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\各地废钢市场价格.png',width=shared.Cm(16))
-    image4 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\锰片价格.png',width=shared.Cm(15))
+    image4 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\锰片价格变化.jpeg',width=shared.Cm(15))
 
     date1 = str(gl.get_value('date1'))[:10]
     date1_62 = gl.get_value('date1_62')
@@ -54,8 +56,8 @@ def make_report(cookies):
     mengkuang_price = gl.get_value('mengkuang_price')
     stock2 = gl.get_value('stock2')
     guimeng_price = gl.get_value('guimeng_price')
-    mengpian_text1 = gl.get_value('mengpian_text1')
-    mengpian_text2 = gl.get_value('mengpian_text2')
+    mengpian_text = gl.get_value('mengpian_text')
+    # mengpian_text2 = gl.get_value('mengpian_text2')
 
     if date1_62 - date2_62 >= 0:
         updown_62 = '上涨'
@@ -92,8 +94,8 @@ def make_report(cookies):
         'diff_mengkuang': diff_mengkuang,
         'mengkuang_text': mengkuang_text,
         'guimeng_text': guimeng_text,
-        'mengpian_text1': mengpian_text1,
-        'mengpian_text2': mengpian_text2,
+        'mengpian_text': mengpian_text,
+        # 'mengpian_text2': mengpian_text2,
         #表格
         # 'stock': stock, #表格，传入参数为list嵌套字典
         'stock2': stock2,
@@ -111,4 +113,5 @@ def make_report(cookies):
     tpl.save('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx')
     result = "周报已生成"
     gl.set_value('result',result)
+    print('周报已生成完毕')
     # weekreportsend.send_report()

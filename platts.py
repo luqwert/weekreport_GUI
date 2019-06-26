@@ -3,23 +3,19 @@
 # @Author  : lusheng
 
 from pylab import *
-import matplotlib.pyplot as plt
 from xlrd import open_workbook
 from xlrd import xldate_as_datetime
-import matplotlib.dates as mdates
 import datetime
 from bs4 import BeautifulSoup
 import urllib.request
 import re
-import globalmap as gl
 from selenium import webdriver
 from openpyxl import load_workbook
-from pyecharts import Line,configure
+from pyecharts import Line, configure
 
-
-# gl._init()
 
 def platts(username,password):
+    #原获取platts数据模块
     urlbase = 'http://www.f139.cn/ore/index.html'
     headers = {
         'Accept': 'text / html, application / xhtml + xml, application / xml;q = 0.9, image / webp, image / apng, * / *;q = 0.8',
@@ -114,107 +110,39 @@ def platts(username,password):
             sheet["G%d" % n_of_rows].value = float(text_list[7])
         wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
 
-    excel_path = 'C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx'
-    wb = load_workbook(excel_path)
-    ws = wb.get_sheet_by_name("普氏、MYSTEEL指数")
-    n_of_rows = ws.max_row - 250
-    # global date1, date1_62, date1_58, date2, date2_62, date2_58
-    # date1 = ws['A%d' % ws.max_row].value
-    # date1_62 = ws['B%d'% ws.max_row].value
-    # date1_58 = ws['C%d' % ws.max_row].value
-    # date2 = ws['A%d' % (ws.max_row - 5)].value
-    # date2_62 = ws['B%d' % (ws.max_row - 5)].value
-    # date2_58 = ws['C%d' % (ws.max_row - 5)].value
-
-    gl.set_value('date1', ws['A%d' % ws.max_row].value)
-    gl.set_value('date1_62', ws['B%d'% ws.max_row].value)
-    gl.set_value('date1_58', ws['C%d' % ws.max_row].value)
-    gl.set_value('date2', ws['A%d' % (ws.max_row - 5)].value)
-    gl.set_value('date2_62', ws['B%d' % (ws.max_row - 5)].value)
-    gl.set_value('date2_58', ws['C%d' % (ws.max_row - 5)].value)
-
-    # data1 = Reference(ws, min_col=2, min_row=n_of_rows, max_row=ws.max_row)#数据来源，多系列可以一个个添加，否则标题不好处理
-    # data2 = Reference(ws, min_col=3, min_row=n_of_rows, max_row=ws.max_row)
-    # se1 = openpyxl.chart.Series(data1, title=ws['B1'].value)
-    # se2 = openpyxl.chart.Series(data2, title=ws['C1'].value)
-    # se2.graphicalProperties.line.solidFill = "00AAAA"#设置系列数据线条颜色
-    # c2 = LineChart()
-    # c2.title = "普氏58、62指数"
-    # c2.style = 12
-    # c2.y_axis.title = "美元"
-    # c2.y_axis.crossAx = 500
-    # c2.x_axis = DateAxis(crossAx=100)
-    # c2.x_axis.number_format = 'mmm-e' #日期坐标轴的显示格式
-    # c2.x_axis.majorTimeUnit = "months" #日期坐标轴间隔单位
-    # c2.y_axis.scaling.min = 10  #y坐标的区间
-    # c2.y_axis.scaling.max = 100
-    # c2.append(se1)#向图表中增加数据系列
-    # c2.append(se2)
-    # dates = Reference(ws, min_col=1, min_row=n_of_rows, max_row=ws.max_row)   #日期坐标轴数据
-    # c2.set_categories(dates)
-    # c2.height = 11#图表大小
-    # c2.width = 18
-    # ws.add_chart(c2, "F%d" % (ws.max_row - 20))   #添加图表到excel表指定位置
-    # wb.save("C:\\Users\\LUS\\Desktop\\周分析会议数据2.xlsx")
-    # print('platts指数图表绘制完成')
-    wb.close()
-
     x_data = []
     y_data1 = []
     y_data2 = []
     mpl.rcParams['font.sans-serif'] = ['SimHei']
     mpl.rcParams['axes.unicode_minus'] = False
     wb = open_workbook('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
-    for s in wb.sheets():
-        # print('Sheet:',s.name )
-        for row in range(s.nrows - 250, s.nrows):
-            # print('the row is:',row )
-            if type(s.cell_value(row, 0)) is str:
-                date = s.cell_value(row, 0)
-            else:
-                date = xldate_as_datetime(s.cell_value(row, 0), 0)
-                date = str(date.strftime('%Y-%m-%d'))
-            # print(date)
-            # values.append(date)
-            x_data.append(date)
-            y_data1.append(s.cell_value(row, 1))
-            y_data2.append(s.cell_value(row, 2))
+    s = wb.sheet_by_name(u'普氏、MYSTEEL指数')
+    for row in range(s.nrows - 250, s.nrows):
+        # print('the row is:',row )
+        if type(s.cell_value(row, 0)) is str:
+            date = s.cell_value(row, 0)
+        else:
+            date = xldate_as_datetime(s.cell_value(row, 0), 0)
+            date = str(date.strftime('%Y-%m-%d'))
+        # print(date)
+        # values.append(date)
+        x_data.append(date)
+        y_data1.append(s.cell_value(row, 1))
+        y_data2.append(s.cell_value(row, 2))
     x_data = [datetime.datetime.strptime(str(d), '%Y-%m-%d').date() for d in x_data]
     # print(x_data)
     # print(y_data1)
     # print(y_data2)
 
-
-    #原绘图
-    # plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%Y-%m-%d'))
-    # plt.gca().xaxis.set_major_locator(mdates.DayLocator())
-    #
-    # fig = plt.figure()
-    # ax1 = fig.add_subplot(111)
-    # plt.plot(x_data, y_data1, label=u"62指数", linewidth=3)
-    # plt.plot(x_data, y_data2, label=u"58指数", linewidth=3)
-    # plt.title("普氏58、62指数")
-    # plt.legend()
-    #
-    # plt.gcf().autofmt_xdate()  # 自动旋转日期标记
-    # month = mdates.MonthLocator()  # 主刻度为每月
-    # ax1.xaxis.set_major_locator(month)  # 设置主刻度
-    # plt.ylim(10, 100)
-    # plt.grid(axis="y")
-    # # plt.xlabel("date")
-    # plt.ylabel("美元")
-    # # plt.show()
-    # fig.savefig('C:\\Users\\LUS\Desktop\\周报材料\\普氏指数.png')
-
     #使用echarts绘图
     configure(output_image=True)
-    line = Line('', background_color='white', title_text_size=25)
+    line = Line('', background_color='white', title_text_size=25, )
     attr = x_data
     v1 = y_data1
     v2 = y_data2
     line.add('62指数', attr, v1, mark_line=['average'], is_label_show=False, is_smooth=True, line_width=2)
     line.add('58指数', attr, v2, mark_line=['average'], is_label_show=False, is_smooth=True, line_width=2)
-    line.render(path='C:\\Users\\LUS\Desktop\\周报材料\\普氏指数.png')
+    line.render(path='C:\\Users\\LUS\Desktop\\周报材料\\普氏指数.jpeg')
 
     print('普氏指数作图完成')
 
