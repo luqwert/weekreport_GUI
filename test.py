@@ -1,6 +1,7 @@
-#!/usr/bin/env python  
-# _*_ coding:utf-8 _*_  
-# @Author  : lusheng
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+# @Author  : Administrator.DESKTOP-4V3P1KOheng
+import datetime
 import os
 
 from wand.image import Image
@@ -12,7 +13,7 @@ import re
 # def get_text():
 #     req_image = []
 #     final_text = ''
-#     with Image(filename=('C:\\Users\\LUS\Desktop\\周报材料\\' + '电解锰周评' + '.pdf'), resolution=400) as img:
+#     with Image(filename=('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + '电解锰周评' + '.pdf'), resolution=400) as img:
 #         with img.convert('jpeg') as converted:
 #             # converted.save(filename='image.jpeg')
 #             for img in converted.sequence:
@@ -29,12 +30,12 @@ import re
 #         mengpian_text = re.search(r'(?<=分析预测)(.+?)(?=\(原创)', final_text).group()
 #         print(mengpian_text)
 #
-#         f_mysteel = open('C:\\Users\\LUS\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
+#         f_mysteel = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
 #         f_mysteel.write(mengpian_text)
 #         f_mysteel.close()
 
 def get_text():
-    filename = 'C:\\Users\\LUS\Desktop\\周报材料\\' + '电解锰周评' + '.pdf'
+    filename = 'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\' + '电解锰周评' + '.pdf'
     req_image = []
     final_text = ''
     with Image(filename=filename, resolution=300) as img:
@@ -59,7 +60,7 @@ def get_text():
     mengpian_text = re.search(r'(?<=分析预测)(.+?)(?=\(原创)', final_text).group()
     print(mengpian_text)
 
-    f_mysteel = open('C:\\Users\\LUS\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
+    f_mysteel = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
     f_mysteel.write(mengpian_text)
     f_mysteel.close()
 

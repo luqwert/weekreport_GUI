@@ -1,14 +1,15 @@
-#!/usr/bin/env python  
-# _*_ coding:utf-8 _*_  
-# @Author  : lusheng
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
+# @Author  : Administrator.DESKTOP-4V3P1KOheng
 
 
 from pylab import *
+from matplotlib.pylab import mpl
 from xlrd import open_workbook
 from xlrd import xldate_as_datetime
 import datetime
 from openpyxl import load_workbook
-from pyecharts import Line,configure
+from pyecharts import Line, configure
 import requests
 from selenium import webdriver
 import time
@@ -29,7 +30,7 @@ def sign_in(username,password,sd,ed):
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
     options.add_argument('--headless')
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome(options=options)
     browser.get(url)
     time.sleep(5)
 
@@ -120,7 +121,7 @@ def sign_in(username,password,sd,ed):
 
 
 def save_data(price, avgprice, date):
-    excel_path = 'C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx'
+    excel_path = 'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx'
     # 打开已经存在的表格并实例化，准备进行修改操作
     wb = load_workbook(excel_path)
     # print(wb.sheetnames)
@@ -142,7 +143,7 @@ def save_data(price, avgprice, date):
         sheet["A%d" % n_of_rows].number_format = 'yyyy-mm-dd'
         sheet["B%d" % n_of_rows].value = price
         sheet["C%d" % n_of_rows].value = avgprice
-    wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
+    wb.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx')
 
 
 
@@ -151,7 +152,7 @@ def make_picture():
     y_data = []
     mpl.rcParams['font.sans-serif'] = ['SimHei']
     mpl.rcParams['axes.unicode_minus'] = False
-    wb = open_workbook('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
+    wb = open_workbook('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx')
     s = wb.sheet_by_name(u'电解锰片价格')
     for row in range(s.nrows - 250, s.nrows):
         # print('the row is:',row )
@@ -172,7 +173,7 @@ def make_picture():
     attr = x_data
     v1 = y_data
     line.add('电解锰片价格', attr, v1, mark_line=['average'], is_label_show=False, is_smooth=True, line_width=3)
-    line.render(path='C:\\Users\\LUS\Desktop\\周报材料\\锰片价格变化.jpeg')
+    line.render(path='C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\锰片价格变化.jpeg')
     print('锰片价格作图完成')
 
 def get_report(browser):
@@ -185,14 +186,14 @@ def get_report(browser):
     # report_url = 'dsds'
     response = requests.get(report_url)
     print(response)
-    with open('C:\\Users\\LUS\Desktop\\周报材料\\' + '电解锰周评' + '.pdf','wb') as f:
+    with open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + '电解锰周评' + '.pdf','wb') as f:
         f.write(response.content)      # r.content -> requests中的二进制响应内容：以字节的方式访问请求响应体，对于非文本请求
         f.close()
 
     #pdf ocr方式提取文本
     # req_image = []
     # final_text = ''
-    # with Image(filename=('C:\\Users\\LUS\Desktop\\周报材料\\' + title + '.pdf'), resolution=400) as img:
+    # with Image(filename=('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + title + '.pdf'), resolution=400) as img:
     #     with img.convert('jpeg') as converted:
     #         # converted.save(filename='image.jpeg')
     #         for img in converted.sequence:
@@ -209,7 +210,7 @@ def get_report(browser):
     # mengpian_text = re.search(r'(?<=分析预测)(.+?)(?=\(原创)', final_text).group()
     # print(mengpian_text)
     #
-    # f_mysteel = open('C:\\Users\\LUS\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
+    # f_mysteel = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\华诚金属.txt', 'w', encoding='utf-8')
     # f_mysteel.write(mengpian_text)
     # f_mysteel.close()
     print('华诚金属网数据下载完成')

@@ -12,6 +12,7 @@ import re
 from selenium import webdriver
 from openpyxl import load_workbook
 from pyecharts import Line, configure
+from matplotlib.pylab import mpl
 
 
 def platts(username,password):
@@ -53,7 +54,7 @@ def platts(username,password):
 
     #新建一个文件用于保存数据
     # f = open('platts.txt', 'w', encoding='utf-8')
-    excel_path = 'C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx'
+    excel_path = 'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx'
 
     for k in range(len(urllist2)):
         # print(k)
@@ -64,14 +65,15 @@ def platts(username,password):
         prefs = {"profile.managed_default_content_settings.images": 2}
         options.add_experimental_option("prefs", prefs)
         options.add_argument('--headless')
-        browser = webdriver.Chrome(chrome_options=options)
+        browser = webdriver.Chrome(options=options)
         browser.get(indexurl)
         input_first = browser.find_element_by_tag_name('table')
+        # print(input_first)
         # print(input_first.text)
         # f.write(indextitle)
         # f.write(input_first.text)
         text_list =input_first.text.split()
-        print(input_first.text.split())
+        # print(input_first.text.split())
         #获取需要写入excel表的数据
         write_data = [indextitle[:-10],text_list[10],text_list[4],text_list[7]]
         data1 = re.findall(r"([0-9]+)月", indextitle[:-10])
@@ -79,7 +81,9 @@ def platts(username,password):
         # print(data1,data2)
         if len(data1[0]) == 1:
             data1[0] = '0' + data1[0]
-        date = '2019-' + data1[0] + '-' + data2[0]
+        year = str(datetime.datetime.now().year)
+        # print(year)
+        date = year + '-'+ data1[0] + '-' + data2[0]
         print(date,text_list[10],text_list[4],text_list[7])
         # price_date= datetime.strptime(date, '%Y-%m-%d')
         # print(price_date)
@@ -99,23 +103,23 @@ def platts(username,password):
         print(n_of_rows,n_of_cols,haddate[-5:])
         # 写入数据参数包括行号、列号、和值（其中参数不止这些）
         # sheet["A%d" % n_of_rows].value = indextitle[:-10]
-
-        if date in haddate:
+        if str(date) in haddate:
             pass
         else:
+            print(n_of_rows,date)
             sheet["A%d" % n_of_rows].value = date
             sheet["A%d" % n_of_rows].number_format = 'yyyy-mm-dd'
             sheet["B%d" % n_of_rows].value = float(text_list[10])
             sheet["C%d" % n_of_rows].value = float(text_list[4])
             sheet["G%d" % n_of_rows].value = float(text_list[7])
-        wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
+        wb.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx')
 
     x_data = []
     y_data1 = []
     y_data2 = []
     mpl.rcParams['font.sans-serif'] = ['SimHei']
     mpl.rcParams['axes.unicode_minus'] = False
-    wb = open_workbook('C:\\Users\\LUS\\Desktop\\周报材料\\周分析会议数据.xlsx')
+    wb = open_workbook('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周分析会议数据.xlsx')
     s = wb.sheet_by_name(u'普氏、MYSTEEL指数')
     for row in range(s.nrows - 250, s.nrows):
         # print('the row is:',row )
@@ -142,7 +146,7 @@ def platts(username,password):
     v2 = y_data2
     line.add('62指数', attr, v1, mark_line=['average'], is_label_show=False, is_smooth=True, line_width=2)
     line.add('58指数', attr, v2, mark_line=['average'], is_label_show=False, is_smooth=True, line_width=2)
-    line.render(path='C:\\Users\\LUS\Desktop\\周报材料\\普氏指数.jpeg')
+    line.render(path='C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\普氏指数.jpeg')
 
     print('普氏指数作图完成')
 

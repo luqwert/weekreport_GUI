@@ -1,6 +1,6 @@
 #!/usr/bin/env python  
 # _*_ coding:utf-8 _*_  
-# @Author  : lusheng
+# @Author  : Administrator.DESKTOP-4V3P1KOheng
 
 
 from docx import shared
@@ -16,7 +16,7 @@ import weekreportsend
 
 
 def make_report(cookies):
-    tpl = DocxTemplate('C:\\Users\\LUS\\Desktop\\周报材料\\周报模板.docx')
+    tpl = DocxTemplate('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\周报模板.docx')
     # gl._init()
 
     cnfeol.cnfeol('sinometal', '20091228',cookies)
@@ -25,16 +25,16 @@ def make_report(cookies):
     mysteel.steelhome('xmx', 'xiemx')
     # asiametal.asiametal('sinometal', '50808266')
     huachengjinshu.huachengjinshu()
-    if os.path.exists('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx'):
-        os.remove('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx')
+    if os.path.exists('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\各产品周市场分析.docx'):
+        os.remove('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\各产品周市场分析.docx')
 
     # rt = RichText('an exemple of ')
     # rt.add('a rich text', style='')
     # rt.add('some violet', color='#ff00ff')
-    image1 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\普氏指数.jpeg',width=shared.Cm(16))
-    image2 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\废钢指数近一年变化.png',width=shared.Cm(16))
-    image3 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\各地废钢市场价格.png',width=shared.Cm(16))
-    image4 = InlineImage(tpl,'C:\\Users\\LUS\\Desktop\\周报材料\\锰片价格变化.jpeg',width=shared.Cm(15))
+    image1 = InlineImage(tpl,'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\普氏指数.jpeg',width=shared.Cm(16))
+    image2 = InlineImage(tpl,'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\废钢指数近一年变化.png',width=shared.Cm(16))
+    image3 = InlineImage(tpl,'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\各地废钢市场价格.png',width=shared.Cm(16))
+    image4 = InlineImage(tpl,'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\锰片价格变化.jpeg',width=shared.Cm(15))
 
     date1 = str(gl.get_value('date1'))[:10]
     date1_62 = gl.get_value('date1_62')
@@ -110,7 +110,7 @@ def make_report(cookies):
     }
 
     tpl.render(context)
-    tpl.save('C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx')
+    tpl.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\各产品周市场分析.docx')
     result = "周报已生成"
     gl.set_value('result',result)
     print('周报已生成完毕')

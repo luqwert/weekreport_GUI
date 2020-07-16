@@ -1,6 +1,6 @@
 #!/usr/bin/env python  
 # _*_ coding:utf-8 _*_  
-# @Author  : lusheng
+# @Author  : Administrator.DESKTOP-4V3P1KOheng
 import datetime
 import os
 
@@ -70,7 +70,7 @@ def asiametal(username, password):
 
     response = requests.get(piclink,headers=h,cookies=cookies)
     print(response)
-    with open('C:\\Users\\LUS\Desktop\\周报材料\\锰片价格.png', 'wb') as f:
+    with open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\锰片价格.png', 'wb') as f:
         f.write(response.content)
         f.close()
 
@@ -81,7 +81,7 @@ def asiametal(username, password):
     print(report_link,report_title)
     response = requests.get(report_link,headers=h,cookies=cookies)
     print(response)
-    f = open('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf','wb')
+    f = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + report_title + '.pdf','wb')
     f.write(response.content)      # r.content -> requests中的二进制响应内容：以字节的方式访问请求响应体，对于非文本请求
     f.close()
     browser.find_element_by_xpath('//*[@id="loginbox"]/ul/li[1]/a').click()  #退出登录状态，避免影响下次登录
@@ -90,7 +90,7 @@ def asiametal(username, password):
     # #pdf ocr方式提取文本
     # req_image = []
     # final_text = ''
-    # with Image(filename=('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf'), resolution=400) as img:
+    # with Image(filename=('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + report_title + '.pdf'), resolution=400) as img:
     #     with img.convert('jpeg') as converted:
     #         converted.save(filename='image.jpeg')
     #         for img in converted.sequence:
@@ -117,7 +117,7 @@ def asiametal(username, password):
 
 
     # #在线方式提取位版本
-    # final_text = pdforimage2text.pdf2text('C:\\Users\\LUS\Desktop\\周报材料\\' + report_title + '.pdf')
+    # final_text = pdforimage2text.pdf2text('C:\\Users\\Administrator.DESKTOP-4V3P1KO\Desktop\\周报材料\\' + report_title + '.pdf')
     # final_text = final_text.replace(' ', '').replace('\n', '')
     # print(final_text)
 

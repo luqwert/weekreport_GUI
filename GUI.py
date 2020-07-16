@@ -1,5 +1,5 @@
-#!/usr/bin/env python  
-# _*_ coding:utf-8 _*_  
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
 # @Author  : lusheng
 
 from tkinter import Label, Tk, Entry, Button
@@ -119,7 +119,7 @@ button60.grid(row=6, column=0)
 #发送周报按钮
 button70 = Button(root,text=' 发送周报 ', font=('楷体',15),fg='red',command=send_report)
 button70.grid(row=7, column=0)
-#发送周报按钮
+#一键生成按钮
 button80 = Button(root,text='                    一键生成                  ', font=('幼圆',15),fg='purple',command=onekey)
 button80.grid(row=8, column=0, columnspan=2)
 

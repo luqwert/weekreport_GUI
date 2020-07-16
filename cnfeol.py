@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # _*_ coding:utf-8 _*_
-# @Author  : lusheng
+# @Author  : Administrator.DESKTOP-4V3P1KOheng
 
 
 from selenium import webdriver
@@ -31,7 +31,7 @@ def cnfeol(username,password,cookies):
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
     # options.add_argument('--headless')
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome(options=options)
     # time.sleep(3)
     browser.get('http://www.cnfeol.com/')
     input_username = browser.find_element_by_id('Signin_MemberName')
@@ -65,36 +65,65 @@ def cnfeol(username,password,cookies):
     #解析目标周报网页
     browser.get(link)
     time.sleep(3)
-
     #获取需要的部分内容
-    page_text = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/p')
-    table_content1 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table[3]').text
-    # print(len(table_content1))
-    #构建表格自动填写的列表
-    table1_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[3]/tbody//tr')
-    # stock = []
+    page_text = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]//p')
+    tables_mengkuang = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]//table')
+    print(len(tables_mengkuang))
+    if len(tables_mengkuang) >= 1:
+        for table in tables_mengkuang:
+            # print(table.find_element_by_xpath('./tbody/tr[1]/td[1]').text)
+            if len(table.find_elements_by_xpath('./tbody//tr')) >= 1:
+                if '港口' in table.find_element_by_xpath('./tbody/tr[1]/td[1]').text:
+                    table1_tr = table.find_elements_by_xpath('./tbody//tr')
+                    break
+                else:
+                    table1_tr = []
+            else:
+                table1_tr = []
+        for table in tables_mengkuang:
+            if len(table.find_elements_by_xpath('./tbody//tr')) >= 1:
+                print(table.find_element_by_xpath('./tbody/tr[1]/td[1]').text)
+                if '产品' in table.find_element_by_xpath('./tbody/tr[1]/td[1]').text:
+                    table2_tr = table.find_elements_by_xpath('./tbody//tr')
+                    print(len(table2_tr))
+                    break
+                else:
+                    table2_tr = []
+            else:
+                table2_tr = []
+    else:
+        table1_tr = []
+        table2_tr = []
+        print('锰矿周分析页面没有表格')
+    # table_content1 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table[1]').text
+    # # print(table_content1)
+    # # print(type(table_content1))
+    # #构建表格自动填写的列表
+    # table1_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[1]/tbody//tr')
+    # # stock = []
     stock2 = []
-    for i in range(len(table1_tr)):
-        td = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[3]/tbody/tr[%d]//td' % (i+1))
+    for tr in table1_tr:
+        td = tr.find_elements_by_xpath('.//td')
         # print(td)
         # stock.append({'port': td[0].text, 'number1': td[1].text, 'number2': td[2].text, 'diff': td[3].text})
         tc = []
         for n in range(len(td)):
             tc.append(td[n].text)
         stock2.append(tc)
+    print(stock2)
     wb = Workbook()
     ws = wb.active
     for li in stock2:
         ws.append(li)
-    wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\cnfeol1.xlsx')
+    wb.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\cnfeol1.xlsx')
 
         # gl.set_value('stock', stock)
 
-    table_content2 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table[4]').text
-    table2_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[4]/tbody//tr')
+    # table_content2 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table[2]').text//*[@id="contentdetail_info_detail"]/table[3]/tbody
+    # table2_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[2]/tbody//tr')
     mengkuang_price = []
-    for i in range(len(table2_tr)):
-        td = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[4]/tbody/tr[%d]//td' % (i+1))
+    for tr in table2_tr:
+        td = tr.find_elements_by_xpath('.//td')
         # print(td)
         # mengkuang_price.append({'type': td[0].text, 'spec': td[1].text, 'price1': td[2].text, 'price2': td[3].text, 'diff': td[4].text, 'port': td[5].text})
         tc = []
@@ -107,7 +136,7 @@ def cnfeol(username,password,cookies):
     ws = wb.active
     for li in mengkuang_price:
         ws.append(li)
-    wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\cnfeol2.xlsx')
+    wb.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\cnfeol2.xlsx')
 
     # print(page_text)
     # text = title + '\n'
@@ -116,12 +145,12 @@ def cnfeol(username,password,cookies):
         text = text + paragraph.text + '\n'
     print(text)
     text = text.replace('\n', '')
-    text1 = re.search(r'(?<=：)(.+?)(?=下游市场|硅锰方面)', text).group() + '\r\n' + re.search(r'(?<=锰矿市场：)(.+?)(?=\s免责声明|免责声明)', text).group()
+    text1 = re.search(r'(?<=：)(.+?)(?=下游市场|硅锰方面|硅锰：|硅锰)', text).group() + '\r\n' + re.search(r'(?<=锰矿市场：)(.+?)(?=\s免责声明|免责声明|2020年铁合金行业)', text).group()
     print(text1)
     # print(table_content1)
     # print(table_content2)
     #保存获得的内容
-    f_mengkuang = open('C:\\Users\\LUS\\Desktop\\周报材料\\锰矿.txt', 'w', encoding='utf-8')
+    f_mengkuang = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\锰矿.txt', 'w', encoding='utf-8')
     f_mengkuang.write(text1)
     # f_mengkuang.write(table_content1 + '\n\n')
     # f_mengkuang.write(table_content2)
@@ -151,23 +180,46 @@ def cnfeol(username,password,cookies):
     time.sleep(5)
 
     #获取需要的部分内容
-    page_text = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/p')
+    page_text = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]//*')
     # print(page_text)
-    text = title + '\n'
+    # text = title + '\n'
+    text = ''
     for paragraph in page_text:
         text = text + paragraph.text + '\n'
 
-    table_content3 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table[1]').text
-    # print(text)
+    # table_content3 = browser.find_element_by_xpath('//*[@id="contentdetail_info_detail"]/table').text
+    # print(table_content3)
     text = text.replace('\n', '')
-    print(text)
-    text2 = re.search(r'(?<=：|:)(.+?)(?=一、)',text).group() +'\r\n'+ re.search(r'(?<=本周总结：)(.+?)(?=四、趋势预测)',text).group() +'\r\n'+ re.search(r'(?<=趋势预测：)(.+?)(?=免责声明)',text).group()
+    # print(text)
+    text2 = re.search(r'(?<=：|:)(.+?)(?=一、)',text).group() +'\r\n'+ re.search(r'(?<=本周总结：)(.+?)(?=四、趋势|四、预测)',text).group() +'\r\n'+ re.search(r'(?<=趋势：|预测：)(.+?)(?=免责声明|2020年铁合金行业)',text).group()
 
-    print(table_content3)
-    table3_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[1]/tbody//tr')
+    print(text2)
+    table3 = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]//table')
+    print('页面有%d个表格' % len(table3))
+    if len(table3) >= 2:
+        for table in table3:
+            # print(table.find_element_by_xpath('./tbody/tr[2]/td[1]').text)
+            if '硅锰' in table.find_element_by_xpath('./tbody/tr[2]/td[1]').text:
+                table3_tr = table.find_elements_by_xpath('./tbody//tr')
+                break
+            elif '钢厂' in table.find_element_by_xpath('./tbody/tr[1]/td[1]').text:
+                table3_tr = table.find_elements_by_xpath('./tbody//tr')
+                break
+            elif '产品' in table.find_element_by_xpath('./tbody/tr[1]/td[1]').text:
+                table3_tr = table.find_elements_by_xpath('./tbody//tr')
+                break
+            else:
+                table3_tr = []
+    elif len(table3) == 1:
+        table3_tr = table3[0].find_elements_by_xpath('./tbody//tr')
+    else:
+        print('硅锰周分析页面没有表格')
+        table3_tr = []
+    # table3_tr = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table/tbody//tr')
+    # print(len(table3_tr))
     guimeng_price = []
-    for i in range(len(table3_tr)):
-        td = browser.find_elements_by_xpath('//*[@id="contentdetail_info_detail"]/table[1]/tbody/tr[%d]//td' % (i+1))
+    for tr in table3_tr:
+        td = tr.find_elements_by_xpath('.//td')
         tc = []
         for n in range(len(td)):
             tc.append(td[n].text)
@@ -177,17 +229,17 @@ def cnfeol(username,password,cookies):
     ws = wb.active
     for li in guimeng_price:
         ws.append(li)
-    wb.save('C:\\Users\\LUS\\Desktop\\周报材料\\cnfeol3.xlsx')
+    wb.save('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\cnfeol3.xlsx')
     #关闭浏览器
     browser.quit()
 
     #保存获得的内容
-    f_guimeng = open('C:\\Users\\LUS\\Desktop\\周报材料\\硅锰.txt', 'w', encoding='utf-8')
+    f_guimeng = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\硅锰.txt', 'w', encoding='utf-8')
     f_guimeng.write(text2)
     #关闭文件
     f_guimeng.close()
 
-
-# cookies = 'bdshare_firstime=1465884234301; ls_token=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_png=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_etag=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_cache=047ada6b-ce18-47ca-8ead-4ca01a9632f2; ASP.NET_SessionId=xkmjlrqoqlaenk45kuycg3eq; cnfeol_mn=; cnfeol_smn=; Hm_lvt_7d36fb642594f3133d486f18ce21e9fd=1558314083; cnfeol_mn=D4DF29036A2136C443B2919FB212EE01; cnfeol_smn=F6AD58D36D91CDBC5C420224F8B16EEF; mobileNotRedict=1; cnfeol_mkoc=false; cnfeol_mt_2015=40AE7CC5E559216E884991B0798EFF24EE6FE5E85F21D8467196F4694031AC4BF51A64B1469B8295834D9B6949562F5A041D903706701B8A3DC6C601CBB25A2084BAD9A65E4BBF459B2623B51FD2A95E148E4ED6622BC2DF3B4F13B6E9C54A89FC2E6C6D803932317EF0B4AF394DC4BFFC02C20ECA737DF227005A03E5E16FDB3316D1549D93F0644E060826F5A268246B4E35258445A97312CF0D8DAC8FEDDA4D71647F90E3AE07BFF62F59668992572543B1027F9302C4DC9ED839C9804A73ED3731C359D722A9DBF0D116179483AFA626375995EE6A626B9EDCEE75113206E6BFD9F18EF2BC727B7B6CAF2ECC73986DAD1A180AE4886A2DD19995B6BD0D2BD081A0E620056202234C3A584B6DA622E103B78D365CB5A289D40B310828D9F6941936234B35A33C6DB970098A148E8FDCEB0CF2F45E315D35E73A85610B9BC67B58711BB61BFB6D567393568BCF039DE35AC84FBC0D2D33C9D791AEE86F55DE9450B69BC16ED6DF2EF49A90899574102575A6696C076079B8635852B722B90C; cnfeol_mt=bC2tT9Z9wi/dBNNEng0GvySuhBY74ZKx0x+ZcgnhqsYmfrB+GGMCeSV6zOMXz6OhJz2F4hbWFkoSNfOz/8GTcb8ut1Zou7B7h4H5xnDN2XrNauw1N5H9NRpGrgSAJBZbBVAEVtPh4/ADG7knE+psX3rT7MoXzG0KHdzfC4ydJYo/GZ64hTvSs5/C0rT14Q8ftXMZN4ygXeWe2YMG1KKgQuXiHAwxd74Ofug/KWsXE7qAioWYe94EE1Vl3yNY8XdG6wUPxT+SYKZVBXPDVDYISPSK9DKRMPabprEWpJfgU0xnpXJg+zSwlBAdeW0EL22sNW8g5i+4deQ=; Hm_lpvt_7d36fb642594f3133d486f18ce21e9fd=1560822484'  # 没有备案过的浏览器，需要手机验证，无法手机验证，因此手动输入更新的cooki
+#
+# cookies = 'bdshare_firstime=1465884234301; ls_token=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_png=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_etag=047ada6b-ce18-47ca-8ead-4ca01a9632f2; evercookie_cache=047ada6b-ce18-47ca-8ead-4ca01a9632f2; ASP.NET_SessionId=l33i4ganx2lmrdrzu5uadumw; cnfeol_mn=D4DF29036A2136C443B2919FB212EE01; cnfeol_smn=F6AD58D36D91CDBC5C420224F8B16EEF; cnfeol_mn=; cnfeol_smn=; Hm_lvt_7d36fb642594f3133d486f18ce21e9fd=1566786622; cnfeol_mkoc=false; cnfeol_mt_2015=40AE7CC5E559216E884991B0798EFF24EE6FE5E85F21D8467196F4694031AC4BB323ECF025369B9252EE8B0EA1E9C40BACD8453339B8171B8CB6181A1540938F1FBB112DE13A4EAB9DF426C00C70CA15F0C30E77F51B479F5A17D4528B4FD9474D21080CCD99BEDABA7568B988AA03AA0C64F8C07F253225636AC18553EDC76EC83F2674710523F3FEBF4ECDF4298ADBEE071E88790A7659B8D25E66E79EC86AA3C09ED6A484165E4119B3FEFFAB46FC534F74027FE4E8BEFAA247915CC394CE1E97054DFF04940F78B930CD66BABE6090A07A403B67D9093A6A4E95D536257CD82B6FC757ABC8C54E832373742EF722EF04547967140F4F19BF28502064BEA1A41638EB8E406825DB6526E087E85B98EB59D462C37C5C569BA049F6FABEE2336E6666A2725E34E7B7DBA887EA12408044570B08DE577FDF84585CFDA5315735AE6FBC08D9106C2D508D7CEE75998AF04EB8D6AB36DFA9FBD6B552182A65297F3B117DCCA8AC74B1296BCCCC6FBFB93EE6EAB2CC4AC3E7705F672F5C3EF3AF04; cnfeol_mt=bC2tT9Z9wi/dBNNEng0GvySuhBY74ZKx0x+ZcgnhqsYmfrB+GGMCeSV6zOMXz6OhJz2F4hbWFkoSNfOz/8GTcb8ut1Zou7B7h4H5xnDN2XrNauw1N5H9NRpGrgSAJBZbBVAEVtPh4/ADG7knE+psX86mvKXVq78dDIRr8gf0L0rSwjrA51RMC7wneXWhJws0r2bSIdDLThkUoGphrGIF2fBny5pUzzDu0j/w1x1YY46lnFRKS3PWWFVl3yNY8XdGMu5d5lRFZvrVg+5L5Lpfm7zioEUYAHNro2A4INoWKGxnpXJg+zSwlBAdeW0EL22sNW8g5i+4deQ=; Hm_lpvt_7d36fb642594f3133d486f18ce21e9fd=1567995523'  # 没有备案过的浏览器，需要手机验证，无法手机验证，因此手动输入更新的cooki
 # cnfeol('sinometal', '20091228', cookies)
 

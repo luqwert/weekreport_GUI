@@ -17,7 +17,7 @@ import globalmap as gl
 
 res = [{'name': '金总', 'mail': 'lusheng@sinometalsh.com'},
              ]
-report_path = 'C:\\Users\\LUS\\Desktop\\各产品周市场分析.docx'
+report_path = 'C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\各产品周市场分析.docx'
 
 def _format_addr(s):
     name, addr = parseaddr(s)

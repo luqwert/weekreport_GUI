@@ -1,5 +1,5 @@
-#!/usr/bin/env python  
-# _*_ coding:utf-8 _*_  
+#!/usr/bin/env python
+# _*_ coding:utf-8 _*_
 # @Author  : lusheng
 
 
@@ -20,7 +20,7 @@ def mysteel(username, password):
     options.add_experimental_option("prefs", prefs)
     # options.add_argument('--headless')
     # options.add_argument('--no-sandbox')
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome(options=options)
     #登录mysteel铁矿石分站
     url = 'https://tks.mysteel.com/'
     browser.get(url)
@@ -68,7 +68,7 @@ def mysteel(username, password):
     browser.get(zhoupinglink)
     zhoupinglink2 = browser.find_elements_by_tag_name('a')
     for i in zhoupinglink2:
-        if 'Mysteel' in i.get_attribute('title'):
+        if '进口铁矿石' in i.get_attribute('title'):
             zhoupinglink2 = i.get_attribute('href')
             break
     print(zhoupinglink2)
@@ -83,7 +83,7 @@ def mysteel(username, password):
     print(zhoupingtext)
 
 
-    zhoupingtext1 = re.search('(?<=引言：)(.*?)(?=一、)',zhoupingtext).group() + '\r\n' + re.search('(?<=下周市场分析|下周市场展望|下周市场预判)(.*?)(?=（文章)',zhoupingtext).group()
+    zhoupingtext1 = re.search('(.*?)(?=一、)',zhoupingtext).group() + '\r\n' + re.search('(?<=下周市场分析|节后市场预判|下周市场展望|下周市场预判|本周市场预判|上周市场预判)(.*?)(?=（文章|免责声明|（负责人)',zhoupingtext).group()
     # zhoupingtext1 = re.search('(?<=下周市场分析|下周市场展望|下周市场预判)(.*?)(?=免责声明)',zhoupingtext).group()
     print(zhoupingtext1)
 
@@ -96,45 +96,45 @@ def mysteel(username, password):
     # print(report_list)
     report_link = ''
     for report in report_list:
-        if '全国废钢市场评述' in report.get_attribute('title'):
+        if '全国废钢周评' in report.get_attribute('title'):
             report_link = report.get_attribute('href')
             report_title = report.get_attribute('title')
             print(report_link, report_title)
             break
     browser.get(report_link)
     feigangtext = browser.find_element_by_xpath('//*[@id="text"]/p[1]').text
+    # try:
+    #     feigangpic1_title = browser.find_element_by_xpath('//*[@id="text"]/p[2]').text
+    # except:
+    #     feigangpic1_title = browser.find_element_by_xpath('//*[@id="text"]/p[2]').text
+    # try:
+    #     feigangpic1 = browser.find_element_by_xpath('//*[@id="text"]/p[3]/img').get_attribute('src')
+    # except:
+    #     feigangpic1 = browser.find_element_by_xpath('//*[@id="text"]/p[3]/img').get_attribute('src')
     try:
-        feigangpic1_title = browser.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/p[3]').text
-    except:
-        feigangpic1_title = browser.find_element_by_xpath('//*[@id="text"]/p[2]').text
-    try:
-        feigangpic1 = browser.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/p[4]/img').get_attribute('src')
-    except:
-        feigangpic1 = browser.find_element_by_xpath('//*[@id="text"]/p[3]/img').get_attribute('src')
-    try:
-        feigangpic2_title = browser.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/p[5]').text
+        feigangpic2_title = browser.find_element_by_xpath('//*[@id="text"]/p[4]').text
     except:
         feigangpic2_title = browser.find_element_by_xpath('//*[@id="text"]/p[4]').text
     try:
-        feigangpic2 = browser.find_element_by_xpath('/html/body/div[1]/div[1]/div/div[2]/p[6]/img').get_attribute('src')
+        feigangpic2 = browser.find_element_by_xpath('//*[@id="text"]/p[5]/img').get_attribute('src')
     except:
         feigangpic2 = browser.find_element_by_xpath('//*[@id="text"]/p[5]/img').get_attribute('src')
     print(feigangtext)
-    print(feigangpic1_title, feigangpic1)
+    # print(feigangpic1_title, feigangpic1)
     print(feigangpic2_title, feigangpic2)
 
-    response = requests.get(feigangpic1)
-    print(response)
-    with open('C:\\Users\\LUS\Desktop\\周报材料\\废钢指数近一年变化.png', 'wb') as f:
-        f.write(response.content)
-        f.close()
+    # response = requests.get(feigangpic1)
+    # print(response)
+    # with open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\废钢指数近一年变化.png', 'wb') as f:
+    #     f.write(response.content)
+    #     f.close()
 
     response = requests.get(feigangpic2)
     print(response)
-    with open('C:\\Users\\LUS\Desktop\\周报材料\\各地废钢市场价格.png', 'wb') as f:
+    with open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\各地废钢市场价格.png', 'wb') as f:
         f.write(response.content)
         f.close()
-    f_mysteel = open('C:\\Users\\LUS\\Desktop\\周报材料\\mysteel.txt', 'w', encoding='utf-8')
+    f_mysteel = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\mysteel.txt', 'w', encoding='utf-8')
     f_mysteel.write(kucuntext + '\n\n')
     f_mysteel.write(kaigongtext + '\n\n')
     f_mysteel.write(zhoupingtext1 + '\n\n')
@@ -149,7 +149,7 @@ def steelhome(username,password):
     prefs = {"profile.managed_default_content_settings.images": 2}
     options.add_experimental_option("prefs", prefs)
     options.add_argument('--headless')
-    browser = webdriver.Chrome(chrome_options=options)
+    browser = webdriver.Chrome(options=options)
     browser.get('http://news2.steelhome.cn/ll/col-058/var-c13/')
     report_list = browser.find_elements_by_xpath('/html/body/center/div[7]/div[2]/form/div/div/a')
     # print(report_list)
@@ -163,7 +163,7 @@ def steelhome(username,password):
     browser.get(report_link)
     browser.find_element_by_xpath('//*[@id="username"]').send_keys(username)
     browser.find_element_by_xpath('//*[@id="password"]').send_keys(password)
-    browser.find_element_by_xpath('//*[@id="loginform"]/table/tbody/tr[4]/td[2]/input[2]').click()
+    browser.find_element_by_xpath('//*[@id="sth_content"]/center/div/div/div/input[4]').click()
     time.sleep(2)
     gangzhijiatext = browser.find_element_by_xpath('//*[@id="sth_content"]').text
     # print(gangzhijiatext)
@@ -171,7 +171,7 @@ def steelhome(username,password):
     print(gangzhijiatext)
 
 #保存获得的内容
-    f_mysteel = open('C:\\Users\\LUS\\Desktop\\周报材料\\mysteel.txt', 'a+', encoding='utf-8')
+    f_mysteel = open('C:\\Users\\Administrator.DESKTOP-4V3P1KO\\Desktop\\周报材料\\mysteel.txt', 'a+', encoding='utf-8')
     f_mysteel.write(gangzhijiatext)
     #关闭文件
     f_mysteel.close()
