@@ -287,6 +287,7 @@
       <workItem from="1594868963824" duration="625000" />
       <workItem from="1594873286696" duration="753000" />
       <workItem from="1594954210597" duration="639000" />
+      <workItem from="1595207301629" duration="1007000" />
     </task>
     <servers />
   </component>
@@ -307,22 +308,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="967" y="292" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594877204458" />
-    <state width="1340" height="266" key="GridCell.Tab.0.bottom" timestamp="1594955132436">
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom" timestamp="1595208310408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1594955132436" />
-    <state width="1340" height="266" key="GridCell.Tab.0.center" timestamp="1594955132436">
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1595208310408" />
+    <state width="1340" height="266" key="GridCell.Tab.0.center" timestamp="1595208310408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1594955132436" />
-    <state width="1340" height="266" key="GridCell.Tab.0.left" timestamp="1594955132436">
+    <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1595208310408" />
+    <state width="1340" height="266" key="GridCell.Tab.0.left" timestamp="1595208310408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1594955132436" />
-    <state width="1340" height="266" key="GridCell.Tab.0.right" timestamp="1594955132436">
+    <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1595208310408" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right" timestamp="1595208310408">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1594955132436" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1595208310408" />
     <state x="779" y="270" key="Vcs.Push.Dialog.v2" timestamp="1594873326111">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -334,7 +335,7 @@
     <SUITE FILE_PATH="coverage/weekreport_GUI$huachengjinshu.coverage" NAME="huachengjinshu Coverage Results" MODIFIED="1585798671026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$cnfeol.coverage" NAME="cnfeol Coverage Results" MODIFIED="1582515860315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$pytesseract.coverage" NAME="pytesseract Coverage Results" MODIFIED="1586221328103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/pytesseract" />
-    <SUITE FILE_PATH="coverage/weekreport_GUI$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1594955098287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/weekreport_GUI$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1595207307769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$make_report.coverage" NAME="make_report Coverage Results" MODIFIED="1585620349499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$huachengjinshu_monthprice.coverage" NAME="huachengjinshu_monthprice Coverage Results" MODIFIED="1594004270444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/weekreport_GUI$test.coverage" NAME="test Coverage Results" MODIFIED="1586221723558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
