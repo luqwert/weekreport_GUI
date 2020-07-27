@@ -33,7 +33,7 @@ def mysteel(username, password):
     kucunlink = browser.find_element_by_xpath('/html/body/ul[1]/li[8]/p/a[4]').get_attribute('href')
     # kucunlink = browser.find_element_by_css_selector('body > ul.navBox > li:nth-child(8) > p > a:nth-child(4)').get_attribute('href')
     kaigonglink = browser.find_element_by_xpath('/html/body/ul[1]/li[8]/p/a[6]').get_attribute('href')
-    zhoupinglink = browser.find_element_by_xpath('/html/body/ul[1]/li[9]/p/a[3]').get_attribute('href')
+    zhoupinglink = browser.find_element_by_xpath('/html/body/ul[1]/li[9]/p/a[4]').get_attribute('href')
     print(kucunlink,kaigonglink)
     #<a href="http://list1.mysteel.com/article/p-4260-------------1.html" target="_blank">港口库存</a>
     browser.get(kucunlink)
@@ -114,9 +114,9 @@ def mysteel(username, password):
     try:
         feigangpic2_title = browser.find_element_by_xpath('//*[@id="text"]/p[4]').text
     except:
-        feigangpic2_title = browser.find_element_by_xpath('//*[@id="text"]/p[4]').text
+        feigangpic2_title = browser.find_element_by_xpath('//*[@id="text"]/p[5]').text
     try:
-        feigangpic2 = browser.find_element_by_xpath('//*[@id="text"]/p[5]/img').get_attribute('src')
+        feigangpic2 = browser.find_element_by_xpath('//*[@id="text"]/p[6]/img').get_attribute('src')
     except:
         feigangpic2 = browser.find_element_by_xpath('//*[@id="text"]/p[5]/img').get_attribute('src')
     print(feigangtext)
@@ -178,6 +178,6 @@ def steelhome(username,password):
     browser.quit()
 
 
-# mysteel('hnxgscb', 'xg8659291')
-# steelhome('xmx', 'xiemx')
-# print('mysteel数据下载完成')
+mysteel('hnxgscb', 'xg8659291')
+steelhome('xmx', 'xiemx')
+print('mysteel数据下载完成')
