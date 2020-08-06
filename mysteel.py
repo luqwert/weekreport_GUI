@@ -178,6 +178,6 @@ def steelhome(username,password):
     browser.quit()
 
 
-mysteel('hnxgscb', 'xg8659291')
-steelhome('xmx', 'xiemx')
-print('mysteel数据下载完成')
+# mysteel('hnxgscb', 'xg8659291')
+# steelhome('xmx', 'xiemx')
+# print('mysteel数据下载完成')
