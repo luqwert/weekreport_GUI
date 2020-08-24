@@ -1,0 +1,12 @@
+matplotlib==3.2.2
+openpyxl==3.0.4
+xlrd==1.2.0
+requests==2.24.0
+beautifulsoup4==4.9.1
+docx==0.2.4
+docxtpl==0.10.0
+Pillow==7.2.0
+pyecharts==1.8.1
+pytesseract==0.3.5
+selenium==3.141.0
+wand==0.6.2
