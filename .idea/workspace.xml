@@ -15,6 +15,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -51,7 +58,7 @@
       </console-settings>
     </option>
   </component>
-  <component name="RunManager" selected="Python.GUI">
+  <component name="RunManager" selected="Python.n_xlsx_in_one">
     <configuration name="GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="weekreport_GUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -140,7 +147,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="n_xlsx_in_one" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="weekreport_GUI" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -153,7 +160,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/n_xlsx_in_one.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -164,11 +171,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.n_xlsx_in_one" />
         <item itemvalue="Python.GUI" />
         <item itemvalue="Python.mysteel" />
         <item itemvalue="Python.bag_price" />
         <item itemvalue="Python.huachengjinshu_monthprice" />
-        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -299,6 +306,7 @@
       <workItem from="1597636082897" duration="453000" />
       <workItem from="1597909051171" duration="621000" />
       <workItem from="1597990960285" duration="1151000" />
+      <workItem from="1598230258394" duration="9877000" />
     </task>
     <servers />
   </component>
@@ -319,22 +327,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="967" y="292" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1594877204458" />
-    <state width="1340" height="266" key="GridCell.Tab.0.bottom" timestamp="1598000166254">
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom" timestamp="1598240958830">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598000166254" />
-    <state width="1340" height="266" key="GridCell.Tab.0.center" timestamp="1598000166254">
+    <state width="1340" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598240958830" />
+    <state width="1340" height="266" key="GridCell.Tab.0.center" timestamp="1598240958829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598000166254" />
-    <state width="1340" height="266" key="GridCell.Tab.0.left" timestamp="1598000166254">
+    <state width="1340" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598240958829" />
+    <state width="1340" height="266" key="GridCell.Tab.0.left" timestamp="1598240958829">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598000166254" />
-    <state width="1340" height="266" key="GridCell.Tab.0.right" timestamp="1598000166254">
+    <state width="1340" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598240958829" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right" timestamp="1598240958830">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598000166254" />
+    <state width="1340" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598240958830" />
     <state x="688" y="179" key="SettingsEditor" timestamp="1598000325470">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -343,6 +351,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="779" y="270" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1594873326111" />
+    <state x="563" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1598231941971">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="563" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598231941971" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/weekreport_GUI$platts.coverage" NAME="platts Coverage Results" MODIFIED="1585616631280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -350,7 +362,8 @@
     <SUITE FILE_PATH="coverage/weekreport_GUI$huachengjinshu.coverage" NAME="huachengjinshu Coverage Results" MODIFIED="1585798671026" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$cnfeol.coverage" NAME="cnfeol Coverage Results" MODIFIED="1582515860315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$pytesseract.coverage" NAME="pytesseract Coverage Results" MODIFIED="1586221328103" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/AppData/Local/Programs/Python/Python38/Lib/site-packages/pytesseract" />
-    <SUITE FILE_PATH="coverage/weekreport_GUI$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1597990970287" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/weekreport_GUI$GUI.coverage" NAME="GUI Coverage Results" MODIFIED="1598230303549" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/weekreport_GUI$n_xlsx_in_one.coverage" NAME="n_xlsx_in_one Coverage Results" MODIFIED="1598239050046" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$make_report.coverage" NAME="make_report Coverage Results" MODIFIED="1585620349499" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/weekreport_GUI$huachengjinshu_monthprice.coverage" NAME="huachengjinshu_monthprice Coverage Results" MODIFIED="1594004270444" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/.." />
     <SUITE FILE_PATH="coverage/weekreport_GUI$test.coverage" NAME="test Coverage Results" MODIFIED="1586221723558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
